@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Certificado="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" Exportacion="01" Fecha="2025-01-10T16:59:43" Folio="376085" FormaPago="01" LugarExpedicion="55024" MetodoPago="PUE" Moneda="MXN" NoCertificado="00001000000710998837" Sello="W+ldcn2hQkQyahMQymLdA73MxIoiV1fvFkbCJqwbj/ivvIujyBINDwybHJXIDSAvXZeB9wclAe7RArMADtOaWVMS6hFSCQCsgb21BYrBipAlrmqYN9KpZSe76c5g8zg28GW7rkcKIZwK2KFSxjVRg5I/+nR0zH5bUvVf9PIOIm4Q6t6Z9cDUFfGE7w0xbNdEOexxpAnwx3TQD1Y8ZWui0mlBnAmWV5Ra5OdRoG4JAHtie8k9LeFvhrfIu4W2KuHPTzEAfy0eacpT/DxRhpJtNRR1tfa6J+PGka505nM3i+4cDAwvjEFTW49+gDbS66ls9ReD7sag8rcmZq37SH0yyw==" Serie="F" SubTotal="224.14" TipoCambio="1" TipoDeComprobante="I" Total="260.00" Version="4.0" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd">
+<cfdi:Emisor Nombre="CONCESIONARIA MEXIQUENSE" RegimenFiscal="601" Rfc="CME030219B64" />
+<cfdi:Receptor DomicilioFiscalReceptor="62578" Nombre="CLIMATIZACION Y MANTENIMIENTO INDUSTRIAL RULES" RegimenFiscalReceptor="601" Rfc="CEI1804262B4" UsoCFDI="G03" />
+<cfdi:Conceptos>
+<cfdi:Concepto Cantidad="1" ClaveProdServ="95111603" ClaveUnidad="C62" Descripcion="Servicio de peaje con Ticket 1456536" Importe="29.31" ObjetoImp="02" Unidad="Uno" ValorUnitario="29.31">
+<cfdi:Impuestos>
+<cfdi:Traslados>
+<cfdi:Traslado Base="29.31" Importe="4.69" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa" />
+</cfdi:Traslados>
+</cfdi:Impuestos>
+</cfdi:Concepto>
+<cfdi:Concepto Cantidad="1" ClaveProdServ="95111603" ClaveUnidad="C62" Descripcion="Servicio de peaje con Ticket 403024" Importe="34.48" ObjetoImp="02" Unidad="Uno" ValorUnitario="34.48">
+<cfdi:Impuestos>
+<cfdi:Traslados>
+<cfdi:Traslado Base="34.48" Importe="5.52" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa" />
+</cfdi:Traslados>
+</cfdi:Impuestos>
+</cfdi:Concepto>
+<cfdi:Concepto Cantidad="1" ClaveProdServ="95111603" ClaveUnidad="C62" Descripcion="Servicio de peaje con Ticket 572947319" Importe="93.97" ObjetoImp="02" Unidad="Uno" ValorUnitario="93.97">
+<cfdi:Impuestos>
+<cfdi:Traslados>
+<cfdi:Traslado Base="93.97" Importe="15.03" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa" />
+</cfdi:Traslados>
+</cfdi:Impuestos>
+</cfdi:Concepto>
+<cfdi:Concepto Cantidad="1" ClaveProdServ="95111603" ClaveUnidad="C62" Descripcion="Servicio de peaje con Ticket 582391306" Importe="66.38" ObjetoImp="02" Unidad="Uno" ValorUnitario="66.38">
+<cfdi:Impuestos>
+<cfdi:Traslados>
+<cfdi:Traslado Base="66.38" Importe="10.62" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa" />
+</cfdi:Traslados>
+</cfdi:Impuestos>
+</cfdi:Concepto>
+</cfdi:Conceptos>
+<cfdi:Impuestos TotalImpuestosTrasladados="35.86">
+<cfdi:Traslados>
+<cfdi:Traslado Base="224.14" Importe="35.86" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa" />
+</cfdi:Traslados>
+</cfdi:Impuestos>
+<cfdi:Complemento><tfd:TimbreFiscalDigital xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" UUID="5AB93053-9C93-41EF-AB0E-850970ABF692" SelloCFD="W+ldcn2hQkQyahMQymLdA73MxIoiV1fvFkbCJqwbj/ivvIujyBINDwybHJXIDSAvXZeB9wclAe7RArMADtOaWVMS6hFSCQCsgb21BYrBipAlrmqYN9KpZSe76c5g8zg28GW7rkcKIZwK2KFSxjVRg5I/+nR0zH5bUvVf9PIOIm4Q6t6Z9cDUFfGE7w0xbNdEOexxpAnwx3TQD1Y8ZWui0mlBnAmWV5Ra5OdRoG4JAHtie8k9LeFvhrfIu4W2KuHPTzEAfy0eacpT/DxRhpJtNRR1tfa6J+PGka505nM3i+4cDAwvjEFTW49+gDbS66ls9ReD7sag8rcmZq37SH0yyw==" NoCertificadoSAT="00001000000508768672" FechaTimbrado="2025-01-10T16:59:44" SelloSAT="R5NsmWLZefPSxb8vSTa3yIhNJb1YEoLu+JV+ijE4azokfo5KPDea+tqTl1r8p4IO1ejJj7RDr1gBh/7WYlLMgRczgUIKnlvJT9YpEeQ3bbSsmAd7oi3zF0bvP5/+Z45sl3HSbJHlQs3OYaqQ/V6oct4wJUARUTD6UqYxHUiyj1DdqoR4f9PjyOD8WVCno/7pQjLVKW0MS0w006nCi5/FKTZrkcAWDGYIco0eiu/ibYU3Rl+XBfHzJWwhR6+S71IILgtlnlAIJDpzGCasm5qJDEbD12nJzrqYkBFmkG8C3gbeFBHuhMU8CGu6LAT3A9HTy2bCRD5veWYL4o7ZjtH56A==" RfcProvCertif="SIF0403229F9" /></cfdi:Complemento></cfdi:Comprobante>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd" Version="4.0" Folio="1859821" NoCertificado="00001000000510215960" Fecha="2025-01-04T12:52:32" FormaPago="04" MetodoPago="PUE" TipoDeComprobante="I" Exportacion="01" LugarExpedicion="09140" Moneda="MXN" TipoCambio="1" SubTotal="433.41" Total="502.76" Certificado="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" Sello="lrGBnkem4rvg5yw9Vvu/rc56JgFhqxoFFfiQZLuoDVUMrzoCkJZN9NGE6AQkkl10nxvnyZULTrnn9EVFWI8F4CDv9qDhQQ729x+2ED75p9z5nKJDttodImKY4NeVmxoNxGf4vRl9AxDKKg1l7R7P+6WLdyAXVzTtLY2U1Yb49RsmGwT7ARvpIbnJMNtgaZd1ZMSn3//7DJgGWQDIYuPk7CygsuND+fnKnaiyij2bxgk0aT/21+pW6TRyGCG+mKCkK8oRZVZPXx+T7yr82tKxEhWOB3ec24PCKskOW/r6DdX25Q7x023w4Os2gOmt2++RQISUADAky74y0wJHMRuErQ==">
+	<cfdi:Emisor Rfc="TUT951215PZ7" Nombre="TUTORNEZA" RegimenFiscal="601" />
+	<cfdi:Receptor Rfc="CEI1804262B4" Nombre="CLIMATIZACION Y MANTENIMIENTO INDUSTRIAL RULES" DomicilioFiscalReceptor="62578" UsoCFDI="G03" RegimenFiscalReceptor="601" />
+	<cfdi:Conceptos>
+		<cfdi:Concepto ClaveProdServ="31201500" Cantidad="1" ClaveUnidad="H87" ObjetoImp="02" Descripcion="12557 CTR-150 CINTA DE EMPAQUE 48 MM X 150 M TRANSPARENTE" ValorUnitario="43.99" Importe="43.99">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="43.99" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="7.04" />
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="31211904" Cantidad="9" ClaveUnidad="H87" ObjetoImp="02" Descripcion="21527 BRP-2-1/2 BROCHA USO GENERAL DE 2-1/2' CON MANGO DE PLáSTICO" ValorUnitario="12.71" Importe="114.38">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="114.38" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="18.30" />
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="31211904" Cantidad="10" ClaveUnidad="H87" ObjetoImp="02" Descripcion="21525 BRP-1-1/2 BROCHA USO GENERAL DE 1-1/2' CON MANGO DE PLáSTICO" ValorUnitario="8.80" Importe="87.98">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="87.98" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="14.08" />
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="31162800" Cantidad="1" ClaveUnidad="H87" ObjetoImp="02" Descripcion="19040 PA-RO PINTURA EN AEROSOL, ROJO, BOTE ESBELTO, 400 ML, TRUPER" ValorUnitario="45.31" Importe="45.31">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="45.31" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="7.25" />
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="31201500" Cantidad="1" ClaveUnidad="H87" ObjetoImp="02" Descripcion="12556 CCA-150 CINTA DE EMPAQUE 48 MM X 150 M CANELA" ValorUnitario="43.99" Importe="43.99">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="43.99" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="7.04" />
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+		<cfdi:Concepto ClaveProdServ="31201500" Cantidad="5" ClaveUnidad="H87" ObjetoImp="02" Descripcion="12590 MSK-3/4 CINTA MASKING TAPE DE 3/4' X 50 M, TRUPER" ValorUnitario="19.55" Importe="97.76">
+			<cfdi:Impuestos>
+				<cfdi:Traslados>
+					<cfdi:Traslado Base="97.76" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="15.64" />
+				</cfdi:Traslados>
+			</cfdi:Impuestos>
+		</cfdi:Concepto>
+	</cfdi:Conceptos>
+	<cfdi:Impuestos TotalImpuestosTrasladados="69.35">
+		<cfdi:Traslados>
+			<cfdi:Traslado Base="433.41" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="69.35" />
+		</cfdi:Traslados>
+	</cfdi:Impuestos>
+	<cfdi:Complemento>
+		<tfd:TimbreFiscalDigital xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd" Version="1.1" RfcProvCertif="CCF1011111K9" SelloSAT="GXqeElBTxVXCLAzVATOCdafsjQx9j7bQuQKhfpWaS4KknQDOy30byCs3+KFkKdGe63VPOdS4vYeOC1ZZ79Yr56BfrV09KfHPOfQaULDJxJW4/vTYYa1HKqPJlG906yKj1Jhc47XUtreUSAEz2HusK6aiLO669YFREK6kuo39mvnG5snuFsi9RyewAbAQQVkVEOIsykNuaihhL+EGaQ34BtSGFTxzD6aoOzfc6GmvSiRNG1wNr9nwPa8HaJJTWSPiRUYTJnTRYPtbNunhqVkPXlKzl1yrjkKCsXq53plhXMhtV8iPWBQSLdSY+07+WnqeIli3BLxNJLGmzoFHnGoShQ==" NoCertificadoSAT="00001000000508341381" FechaTimbrado="2025-01-04T12:54:49" UUID="18AFA11B-ACD9-41E9-B8EC-6B6AD8F55583" SelloCFD="lrGBnkem4rvg5yw9Vvu/rc56JgFhqxoFFfiQZLuoDVUMrzoCkJZN9NGE6AQkkl10nxvnyZULTrnn9EVFWI8F4CDv9qDhQQ729x+2ED75p9z5nKJDttodImKY4NeVmxoNxGf4vRl9AxDKKg1l7R7P+6WLdyAXVzTtLY2U1Yb49RsmGwT7ARvpIbnJMNtgaZd1ZMSn3//7DJgGWQDIYuPk7CygsuND+fnKnaiyij2bxgk0aT/21+pW6TRyGCG+mKCkK8oRZVZPXx+T7yr82tKxEhWOB3ec24PCKskOW/r6DdX25Q7x023w4Os2gOmt2++RQISUADAky74y0wJHMRuErQ==" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" />
+	</cfdi:Complemento>
+</cfdi:Comprobante>

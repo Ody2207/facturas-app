@@ -1,7 +1,8 @@
 import xml2js from "xml2js";
 import { promises as fs } from "fs";
 import path from "path";
-import separateInvoicesByPaymentMethod from './xml-to-exel.js';
+import separateInvoicesByPaymentMethod from './paymentFilter';
+import { writeFile } from './excelGenerator.js'
 
 const xmlParserOptions = {
     explicitArray: false,
@@ -109,28 +110,9 @@ async function main() {
     try {
         const xmlStrings = await leerArchivosXML(carpetaPublic);
         const facturas = await procesarFacturas(xmlStrings);        
+        const facturasFiltradas = separateInvoicesByPaymentMethod(facturas)
+        writeFile(facturasFiltradas)
 
-        // const jsonCarpeta = path.join(process.cwd(), 'public', 'json');
-        // const jsonArchivo = path.join(jsonCarpeta, 'facturas.json');
-
-        // try {
-        //     await fs.access(jsonArchivo);
-        //     await fs.unlink(jsonArchivo);
-        //     console.log("Archivo existente eliminado: facturas.json");
-            
-        // } catch {
-        //     console.error("No se encontró un archivo existente, creando uno nuevo.");
-        // }
-        
-        // fs.writeFile(`${jsonCarpeta}/facturas.json`, JSON.stringify(facturas, null, 2), (err) => {
-        //     if (err) {
-        //         console.error("Error al escribir archivo:", err);
-        //         return;
-        //     }
-        //     console.log("Facturas guardadas en facturas.json");
-        // });
-
-        separateInvoicesByPaymentMethod(facturas)
         return 'ok'
     } catch (error) {
         console.error("Error en el proceso principal:", error);

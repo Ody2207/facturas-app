@@ -1,4 +1,4 @@
-import main from './process.js';
+import main from './xmlExtractor.js';
 import { NextResponse } from 'next/server';
 
 export async function GET() {

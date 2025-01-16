@@ -1,22 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-
-// const getInvoices = async () => {
-//     const res = await fetch('http://localhost:3000/json/facturas.json')
-//     const data = await res.json()
-//     return data
-// }
-
 export default function separateInvoicesByPaymentMethod(invoices) {
-    // Leer el archivo JSON
-    // const rawData = fs.readFileSync(getInvoices());
-    // const invoices = JSON.parse(rawData);
-    // const invoices = getInvoices();
-
-    // Objeto para almacenar las facturas por forma de pago
     const invoicesByPaymentMethod = {};
 
-    // Procesar cada factura
     invoices.forEach((invoice) => {
         const paymentMethod = invoice.FormaPago;
         if (!invoicesByPaymentMethod[paymentMethod]) {
@@ -34,4 +18,15 @@ export default function separateInvoicesByPaymentMethod(invoices) {
     //     console.log(`Archivo creado: ${outputFilePath}`);
     // }
     console.log(invoicesByPaymentMethod)
+    return invoicesByPaymentMethod
 }
+
+// const fac = {
+//     '01': [
+//         {
+//             'UDDI': '001',
+//         }
+//     ],
+//     '02': [],
+//     '03': [],
+// }

@@ -1,21 +1,17 @@
 const XlsxPopulate = require('xlsx-populate')
 const path = require('path')
-// const { fstat } = require('fs')
 const fs = require('fs')
 
 const filePath = path.join(process.cwd(), 'public', 'excel')
 
-// Validar si el archivo existe
 function validarExcelFile() {
     const file = `${filePath}/facturas.xlsx`
     return fs.existsSync(file)
 }
 
-// Funcion que escribe en un archivo excel
-export async function writeFile(data) {
+async function writeFile(data) {
     try {
         const formasPago = Object.keys(data)
-        console.log(formasPago)
 
         const workbook = await XlsxPopulate.fromBlankAsync()
         workbook.sheet(0).name('Resumen')
@@ -69,68 +65,11 @@ export async function writeFile(data) {
 }
 
 // Funcion que valida y crea un archivo excel
-function createExcelFile() {
-    
+export default function createExcelFile(facturas) {
+    if(validarExcelFile()) {
+        fs.unlinkSync(`${filePath}/facturas.xlsx`)
+        writeFile(facturas)
+    } else {
+        writeFile(facturas)
+    }
 }
-
-// async function newFile() {
-//     try {
-//         // Validamos si el archivo existe
-
-
-//         // Si no existe, creamos un nuevo archivo
-//         const workbook = await XlsxPopulate.fromBlankAsync(); 
-
-//         await workbook.toFileAsync('./excels/factuas.xlsx')
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
-
-// async function writeFile() {
-//     try {
-//         const workbook = await XlsxPopulate.fromBlankAsync('./excels/factuas.xlsx')
-//         const factuas = data
-
-//         workbook.sheet(0).cell('A2').value('UUID')
-//         workbook.sheet(0).cell('B2').value('FECHA')
-//         workbook.sheet(0).cell('C2').value('TOTAL')
-//         workbook.sheet(0).cell('D2').value('SUBTOTAL')
-//         workbook.sheet(0).cell('E2').value('MONEDA')
-//         workbook.sheet(0).cell('F2').value('TIPO DE COMPROBANTE')
-//         workbook.sheet(0).cell('G2').value('METODO DE PAGO')
-//         workbook.sheet(0).cell('H2').value('FORMA DE PAGO')
-//         workbook.sheet(0).cell('I2').value('EMISOR: RFC')
-//         workbook.sheet(0).cell('J2').value('EMISOR: NOMBRE')
-//         workbook.sheet(0).cell('K2').value('EMISOR: REGIMEN FISCAL')
-//         workbook.sheet(0).cell('L2').value('RECEPTOR: RFC')
-//         workbook.sheet(0).cell('M2').value('RECEPTOR: NOMBRE')
-//         workbook.sheet(0).cell('N2').value('RECEPTOR: USO CFDI')
-
-//         factuas.map((item, i) => {
-//             workbook.sheet(0).cell(`A${i + 3}`).value(item.UUID)
-//             workbook.sheet(0).cell(`B${i + 3}`).value(item.Fecha)
-//             workbook.sheet(0).cell(`C${i + 3}`).value(item.Total)
-//             workbook.sheet(0).cell(`D${i + 3}`).value(item.SubTotal)
-//             workbook.sheet(0).cell(`E${i + 3}`).value(item.Moneda)
-//             workbook.sheet(0).cell(`F${i + 3}`).value(item.TipoDeComprobante)
-//             workbook.sheet(0).cell(`G${i + 3}`).value(item.MetodoPago)
-//             workbook.sheet(0).cell(`H${i + 3}`).value(item.FormaPago)
-//             workbook.sheet(0).cell(`I${i + 3}`).value(item.Emisor.Rfc)
-//             workbook.sheet(0).cell(`J${i + 3}`).value(item.Emisor.Nombre)
-//             workbook.sheet(0).cell(`K${i + 3}`).value(item.Emisor.RegimenFiscal)
-//             workbook.sheet(0).cell(`L${i + 3}`).value(item.Receptor.Rfc)
-//             workbook.sheet(0).cell(`M${i + 3}`).value(item.Receptor.Nombre)
-//             workbook.sheet(0).cell(`N${i + 3}`).value(item.Receptor.UsoCFDI)
-
-//         })
-        
-//         await workbook.toFileAsync('./excels/factuas.xlsx')
-//         console.log('La escritura de los datos fue correcto')
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
-
-// newFile()
-// writeFile()

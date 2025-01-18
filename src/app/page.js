@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 function HomePage() {
+    const [status, setStatus] = useState(null);
     const [files, setFile] = useState();
     const [message, setMessage] = useState('');
 
@@ -10,12 +11,22 @@ function HomePage() {
         try {
             const res = await fetch('/api/process')
             const data = await res.json()
-            
-            console.log(data)
+
             setMessage(data.message)
+            getStatus()
         } catch (error) {
-            console.error("Error al procesar XML:", error);
+            console.error(error);
             return null;
+        }
+    }
+
+    const getStatus = async () => {
+        try {
+            const res = await fetch('/api/process')
+
+            setStatus(res.status)
+        } catch (err) {
+            console.error(err)
         }
     }
     return (
@@ -62,8 +73,12 @@ function HomePage() {
                         console.log(res)
                     }}
                 >Limpar</button>
+
                 <button type="button" onClick={getProcess}>Correr</button>
+
                 <button>Subir</button>
+
+                { status === 200 ? <a href="excel/facturas.xlsx">Descargar</a> : null }
             </form>
 
             <p>Status: {message}</p>

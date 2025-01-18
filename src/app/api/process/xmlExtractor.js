@@ -2,7 +2,7 @@ import xml2js from "xml2js";
 import { promises as fs } from "fs";
 import path from "path";
 import separateInvoicesByPaymentMethod from './paymentFilter';
-import { writeFile } from './excelGenerator.js'
+import createExcelFile from './excelGenerator.js'
 
 const xmlParserOptions = {
     explicitArray: false,
@@ -111,9 +111,9 @@ async function main() {
         const xmlStrings = await leerArchivosXML(carpetaPublic);
         const facturas = await procesarFacturas(xmlStrings);        
         const facturasFiltradas = separateInvoicesByPaymentMethod(facturas)
-        writeFile(facturasFiltradas)
+        createExcelFile(facturasFiltradas)
 
-        return 'ok'
+        return 'Archivo generado con éxito'
     } catch (error) {
         console.error("Error en el proceso principal:", error);
     }

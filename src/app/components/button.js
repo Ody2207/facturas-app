@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 
-const dynamicButton = () => {
-    const [showButton, setShowButton] = useState();
+// const dynamicButton = () => {
+//     const [showButton, setShowButton] = useState();
 
-    useEffect(() => {
-        const fetchCondition = async () => {
+//     useEffect(() => {
+//         const fetchCondition = async () => {
 
-        }
-    })
-}
+//         }
+//     })
+// }

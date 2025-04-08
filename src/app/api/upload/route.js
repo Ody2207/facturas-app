@@ -1,12 +1,11 @@
 import { writeFile, readdir, unlink } from "fs/promises";
-import path, { extname } from "path";
+import { tmpdir } from "os";
+import path, { extname, join } from "path";
 
 export async function POST(req) {
-    // Llamado del api desde el cliente
     const data = await req.formData();
     const files = data.getAll("files");
 
-    // Guardar archivo en el servidor
     for (const file of files) {
         const extension = extname(file.name);
 
@@ -17,17 +16,14 @@ export async function POST(req) {
             );
         }
 
-        // Guarda las extensiones permitidas
         const bytes = await file.arrayBuffer();
         const buffer = Buffer.from(bytes);
 
-        // Escribir archivo en el servidor
-        const filePath = path.join(process.cwd(), 'public', 'xml', file.name);
-        await writeFile(filePath, buffer);
+        const tempDir = tmpdir()
+        const tempFilePath = join(tempDir, file.name)
+        await writeFile(tempFilePath, buffer)
 
     }
-
-    console.log("Archivo guardado!");
 
     return new Response(
         JSON.stringify({
@@ -37,13 +33,11 @@ export async function POST(req) {
 }
 
 export async function DELETE() {
-    const directory = path.join(process.cwd(), 'public', 'xml');
+    const directory = tmpdir();
   
-    // Lee todos los archivos en el directorio
     const files = await readdir(directory);
     console.log(files);
   
-    // Elimina los archivos del directorio
     await Promise.all(
       files.map(async (file) => {
         const filePath = path.join(directory, file);

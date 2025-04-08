@@ -3,13 +3,14 @@ import { promises as fs } from "fs";
 import path from "path";
 import separateInvoicesByPaymentMethod from './paymentFilter';
 import createExcelFile from './excelGenerator.js'
+import { tmpdir } from 'os';
 
 const xmlParserOptions = {
     explicitArray: false,
     mergeAttrs: true,
 };
 
-const carpetaPublic = path.join(process.cwd(), 'public', 'xml');
+const carpetaPublic = tmpdir();
 
 async function leerArchivosXML(carpeta) {
     try {

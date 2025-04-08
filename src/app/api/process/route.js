@@ -1,4 +1,4 @@
-import main from './xmlExtractor.js';
+import main from '@/app/lib/xmlExtractor.js';
 import { NextResponse } from 'next/server';
 
 export async function GET() {

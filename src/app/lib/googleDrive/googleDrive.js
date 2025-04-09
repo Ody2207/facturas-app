@@ -28,7 +28,7 @@ export async function uploadToDrive(file) {
 
   const fileMetadata = {
     name: file.originalFilename,
-    parents: ["1XM1L1jqAFxKwhF2GndOMes6ejf9bTNJE"],
+    parents: [process.env.GOOGLE_DRIVE_FOLDER_ID],
   };
 
   const media = {
@@ -44,3 +44,35 @@ export async function uploadToDrive(file) {
 
   return response.data.id;
 }
+
+export async function deleteAllFromFolder(folderId) {
+    const auth = new google.auth.GoogleAuth({
+      credentials: apiKey,
+      scopes: SCOPE,
+    });
+  
+    const authClient = await auth.getClient();
+    const drive = google.drive({ version: "v3", auth: authClient });
+  
+    const res = await drive.files.list({
+      q: `'${folderId}' in parents and trashed = false`,
+      fields: 'files(id, name)',
+    });
+  
+    const files = res.data.files;
+  
+    if (!files.length) {
+      return { message: "No hay archivos para borrar", deleted: 0 };
+    }
+  
+    let deletedCount = 0;
+  
+    // 2. Eliminar archivos uno por uno
+    for (const file of files) {
+      await drive.files.delete({ fileId: file.id });
+      deletedCount++;
+    }
+  
+    return { message: `Se eliminaron ${deletedCount} archivos.`, deleted: deletedCount };
+}
+  

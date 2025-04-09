@@ -1,4 +1,4 @@
-import { uploadToDrive } from "@/app/lib/googleDrive/googleDrive";
+import { uploadToDrive, deleteAllFromFolder} from "@/app/lib/googleDrive/googleDrive";
 import { IncomingForm } from "formidable";
 import { NextResponse } from "next/server";
 import { Readable } from 'node:stream';
@@ -57,6 +57,18 @@ export async function POST(request) {
     });
 }
 
+
+export async function DELETE() {
+	try {
+	  const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
+	  const result = await deleteAllFromFolder(folderId);
+	  return NextResponse.json(result);
+	} catch (error) {
+	  console.error("Error al borrar archivos:", error);
+	  return NextResponse.json({ message: "Error interno" }, { status: 500 }); // ✅ <-- JSON siempre
+	}
+  }
+
 // Convierte Request del App Router a IncomingMessage
 async function convertRequestToNodeReadable(request) {
     const body = await request.body;
@@ -66,3 +78,4 @@ async function convertRequestToNodeReadable(request) {
     readable.url = request.url;
     return readable;
 }
+

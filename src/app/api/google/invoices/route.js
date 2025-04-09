@@ -28,9 +28,24 @@ export async function POST(request) {
             }
 
             try {
-                const fileArray = Array.isArray(files.files)
-                    ? files.files
-                    : [files.files];
+                let fileArray = [];
+                for (const key in files) {
+                    const value = files[key];
+                    if (Array.isArray(value)) {
+                        fileArray.push(...value);
+                    } else if (value) {
+                        fileArray.push(value);
+                    }
+                }
+
+                if (fileArray.length > 200) {
+                    return resolve(
+                        NextResponse.json(
+                            { message: "Demasiados archivos (máx. 200)" },
+                            { status: 400 }
+                        )
+                    );
+                }
                 const uploadedIds = [];
 
                 for (const file of fileArray) {

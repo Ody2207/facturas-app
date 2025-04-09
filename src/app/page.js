@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import UploadForm from './components/UploadForm'
 
 function HomePage() {
     const [status, setStatus] = useState(null);
@@ -80,9 +81,15 @@ function HomePage() {
                 <button>Subir</button>
 
                 { status === 200 ? <a href="excel/facturas.xlsx">Descargar</a> : null }
+
+                // Nuevo form
+
+                
             </form>
 
             <p>Status: {message}</p>
+
+            <UploadForm />
         </div>
     );
 }

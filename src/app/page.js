@@ -33,68 +33,6 @@ function HomePage() {
 
     return (
         <div>
-            <form
-                onSubmit={async (e) => {
-                    e.preventDefault();
-
-                    if (!files || files.length === 0) return;
-
-                    const form = new FormData();
-                    Array.from(files).forEach((file) => {
-                        form.append("files", file);
-                    });
-                    {
-                        /*form.set('file', file)*/
-                    }
-
-                    {
-                        /* Sending file to server*/
-                    }
-                    const res = await fetch("/api/upload", {
-                        method: "POST",
-                        body: form,
-                    });
-                    const data = await res.json();
-                    console.log(data);
-                }}
-            >
-                <label>Upload file:</label>
-
-                <input
-                    type="file"
-                    accept=".xml"
-                    multiple
-                    onChange={(e) => {
-                        setFile(e.target.files);
-                    }}
-                />
-
-                <button
-                    type="button"
-                    onClick={async (e) => {
-                        const res = await fetch("/api/upload", {
-                            method: "DELETE",
-                        });
-
-                        console.log(res);
-                    }}
-                >
-                    Limpar
-                </button>
-
-                <button type="button" onClick={getProcess}>
-                    Correr
-                </button>
-
-                <button>Subir</button>
-
-                {status === 200 ? (
-                    <a href="excel/facturas.xlsx">Descargar</a>
-                ) : null}
-            </form>
-
-            <p>Status: {message}</p>
-
             <UploadForm />
 
             <button

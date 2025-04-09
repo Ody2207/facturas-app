@@ -43,9 +43,9 @@ function HomePage() {
                     Array.from(files).forEach((file) => {
                         form.append("files", file);
                     });
-                    // form.set('file', file)
+                    {/*form.set('file', file)*/}
 
-                    // Sending file to server
+                    {/* Sending file to server*/}
                     const res = await fetch('/api/upload', {
                         method: 'POST',
                         body: form
@@ -81,10 +81,6 @@ function HomePage() {
                 <button>Subir</button>
 
                 { status === 200 ? <a href="excel/facturas.xlsx">Descargar</a> : null }
-
-                // Nuevo form
-
-                
             </form>
 
             <p>Status: {message}</p>

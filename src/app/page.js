@@ -1,36 +1,36 @@
 "use client";
 
 import { useState } from "react";
-import UploadForm from './components/UploadForm'
+import UploadForm from "./components/UploadForm";
 
 function HomePage() {
     const [status, setStatus] = useState(null);
     const [files, setFile] = useState();
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState("");
 
     const getProcess = async () => {
         try {
-            const res = await fetch('/api/process')
-            const data = await res.json()
+            const res = await fetch("/api/process");
+            const data = await res.json();
 
-            setMessage(data.message)
-            getStatus()
+            setMessage(data.message);
+            getStatus();
         } catch (error) {
             console.error(error);
             return null;
         }
-    }
+    };
 
     const getStatus = async () => {
         try {
-            const res = await fetch('/api/process')
+            const res = await fetch("/api/process");
 
-            setStatus(res.status)
+            setStatus(res.status);
         } catch (err) {
-            console.error(err)
+            console.error(err);
         }
-    }
-    
+    };
+
     return (
         <div>
             <form
@@ -43,15 +43,19 @@ function HomePage() {
                     Array.from(files).forEach((file) => {
                         form.append("files", file);
                     });
-                    {/*form.set('file', file)*/}
+                    {
+                        /*form.set('file', file)*/
+                    }
 
-                    {/* Sending file to server*/}
-                    const res = await fetch('/api/upload', {
-                        method: 'POST',
-                        body: form
-                    })
-                    const data = await res.json()
-                    console.log(data)
+                    {
+                        /* Sending file to server*/
+                    }
+                    const res = await fetch("/api/upload", {
+                        method: "POST",
+                        body: form,
+                    });
+                    const data = await res.json();
+                    console.log(data);
                 }}
             >
                 <label>Upload file:</label>
@@ -67,25 +71,47 @@ function HomePage() {
 
                 <button
                     type="button"
-                    onClick={async (e) =>  {
-                        const res = await fetch('/api/upload', {
-                            method: 'DELETE'
-                        })
+                    onClick={async (e) => {
+                        const res = await fetch("/api/upload", {
+                            method: "DELETE",
+                        });
 
-                        console.log(res)
+                        console.log(res);
                     }}
-                >Limpar</button>
+                >
+                    Limpar
+                </button>
 
-                <button type="button" onClick={getProcess}>Correr</button>
+                <button type="button" onClick={getProcess}>
+                    Correr
+                </button>
 
                 <button>Subir</button>
 
-                { status === 200 ? <a href="excel/facturas.xlsx">Descargar</a> : null }
+                {status === 200 ? (
+                    <a href="excel/facturas.xlsx">Descargar</a>
+                ) : null}
             </form>
 
             <p>Status: {message}</p>
 
             <UploadForm />
+
+            <button
+                onClick={async () => {
+                    const res = await fetch("/api/process");
+                    const data = await res.json();
+
+                    if (res.ok) {
+                        alert("✅ " + data.message);
+                        window.open(data.downloadUrl, "_blank");
+                    } else {
+                        alert("❌ " + data.message);
+                    }
+                }}
+            >
+                Generar y Descargar Excel
+            </button>
         </div>
     );
 }

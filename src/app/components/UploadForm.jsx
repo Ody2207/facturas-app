@@ -6,6 +6,15 @@ export default function UploadForm() {
     const [selectedFiles, setSelectedFiles] = useState(null);
     const [status, setStatus] = useState("");
 
+    // 🔧 Función utilitaria para dividir archivos en grupos de 5
+    const chunkArray = (array, size) => {
+        const result = [];
+        for (let i = 0; i < array.length; i += size) {
+            result.push(array.slice(i, i + size));
+        }
+        return result;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!selectedFiles || selectedFiles.length === 0) {
@@ -13,26 +22,30 @@ export default function UploadForm() {
             return;
         }
 
-        const formData = new FormData();
-        for (let i = 0; i < selectedFiles.length; i++) {
-            formData.append("files", selectedFiles[i]);
-        }
+        const chunks = chunkArray(Array.from(selectedFiles), 5);
+        const allIds = [];
 
         try {
-            const res = await fetch("/api/google/invoices", {
-                method: "POST",
-                body: formData,
-            });
+            for (const chunk of chunks) {
+                const formData = new FormData();
+                chunk.forEach(file => formData.append("file", file));
 
-            const data = await res.json();
+                const res = await fetch("/api/google/invoices", {
+                    method: "POST",
+                    body: formData,
+                });
 
-            if (res.ok) {
-                setStatus(
-                    `✅ Archivos subidos correctamente: ${data.ids.join(", ")}`
-                );
-            } else {
-                setStatus(`❌ Error en la subida: ${data.message}`);
+                const data = await res.json();
+
+                if (!res.ok) {
+                    setStatus(`❌ Error en la subida de un lote: ${data.message}`);
+                    return;
+                }
+
+                allIds.push(...data.ids);
             }
+
+            setStatus(`✅ Archivos subidos correctamente: ${allIds.join(", ")}`);
         } catch (error) {
             console.error("Error al subir archivos:", error);
             setStatus("❌ Error inesperado al subir los archivos.");
@@ -47,24 +60,23 @@ export default function UploadForm() {
 
         try {
             const res = await fetch("/api/google/invoices", { method: "DELETE" });
-          
             const contentType = res.headers.get("content-type");
+
             if (contentType && contentType.includes("application/json")) {
-              const data = await res.json();
-          
-              if (res.ok) {
-                setStatus(`🗑️ ${data.message}`);
-              } else {
-                setStatus(`❌ Error al borrar archivos: ${data.message}`);
-              }
+                const data = await res.json();
+
+                if (res.ok) {
+                    setStatus(`🗑️ ${data.message}`);
+                } else {
+                    setStatus(`❌ Error al borrar archivos: ${data.message}`);
+                }
             } else {
-              throw new Error("Respuesta no es JSON");
+                throw new Error("Respuesta no es JSON");
             }
-          
-          } catch (error) {
+        } catch (error) {
             console.error("Error al borrar archivos:", error);
             setStatus("❌ Error inesperado al borrar los archivos.");
-          }
+        }
     };
 
     return (

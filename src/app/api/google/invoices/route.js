@@ -74,15 +74,15 @@ export async function POST(request) {
 
 
 export async function DELETE() {
-	try {
-	  const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
-	  const result = await deleteAllFromFolder(folderId);
-	  return NextResponse.json(result);
-	} catch (error) {
-	  console.error("Error al borrar archivos:", error);
-	  return NextResponse.json({ message: "Error interno" }, { status: 500 }); // ✅ <-- JSON siempre
-	}
-  }
+    try {
+        const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID;
+        const result = await deleteAllFromFolder(folderId);
+        return NextResponse.json(result);
+    } catch (error) {
+        console.error("Error al borrar archivos:", error);
+        return NextResponse.json({ message: "Error interno" }, { status: 500 });
+    }
+}
 
 // Convierte Request del App Router a IncomingMessage
 async function convertRequestToNodeReadable(request) {

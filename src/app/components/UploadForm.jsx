@@ -48,7 +48,7 @@ export default function UploadForm() {
             setStatus(`✅ Archivos subidos correctamente: ${allIds.join(", ")}`);
         } catch (error) {
             console.error("Error al subir archivos:", error);
-            setStatus("❌ Error inesperado al subir los archivos.");
+            setStatus("❌ Error inesperado al subir los archivos.", error);
         }
     };
 

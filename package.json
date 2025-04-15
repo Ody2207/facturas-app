@@ -10,7 +10,6 @@
     "process": "node ./src/app/api/process/proces.js"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.4",
     "formidable": "^3.5.2",
     "fs": "^0.0.1-security",
     "googleapis": "^148.0.0",
@@ -22,6 +21,7 @@
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.21",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "postcss": "^8.5.3",

@@ -74,13 +74,13 @@ export default function UploadForm() {
                 throw new Error("Respuesta no es JSON");
             }
         } catch (error) {
-            console.error("Error al borrar archivos:", error);
+            consolefig.error("Error al borrar archivos:", error);
             setStatus("❌ Error inesperado al borrar los archivos.");
         }
     };
 
     return (
-        <div className="space-y-4">
+        <section className="space-y-4 w-1/2 h-10 bg-red-50">
             <form onSubmit={handleSubmit}>
                 <input
                     type="file"
@@ -100,6 +100,6 @@ export default function UploadForm() {
             </button>
 
             {status && <p dangerouslySetInnerHTML={{ __html: status }} />}
-        </div>
+        </section>
     );
 }

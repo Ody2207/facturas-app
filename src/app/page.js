@@ -32,7 +32,7 @@ function HomePage() {
     };
 
     return (
-        <div>
+        <section className="w-full h-screen bg-black">
             <UploadForm />
 
             <button
@@ -50,7 +50,7 @@ function HomePage() {
             >
                 Generar y Descargar Excel
             </button>
-        </div>
+        </section>
     );
 }
 

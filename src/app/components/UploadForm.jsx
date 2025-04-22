@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ComButton from "./ComButton";
+import DownloadButton from './DownloadButton'
 
 export default function UploadForm() {
     const [selectedFiles, setSelectedFiles] = useState(null);
@@ -108,21 +109,8 @@ export default function UploadForm() {
                 </button>
                 <ComButton />
 
-                <button
-                    onClick={async () => {
-                        const res = await fetch("/api/process");
-                        const data = await res.json();
+                <DownloadButton/>
 
-                        if (res.ok) {
-                            alert("✅ " + data.message);
-                            window.open(data.downloadUrl, "_blank");
-                        } else {
-                            alert("❌ " + data.message);
-                        }
-                    }}
-                >
-                    Generar y Descargar Excel
-                </button>
                 {status && <p dangerouslySetInnerHTML={{ __html: status }} />}
             </div>
         </form>

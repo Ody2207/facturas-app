@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ComButton from "./ComButton";
 
 export default function UploadForm() {
     const [selectedFiles, setSelectedFiles] = useState(null);
@@ -28,7 +29,7 @@ export default function UploadForm() {
         try {
             for (const chunk of chunks) {
                 const formData = new FormData();
-                chunk.forEach(file => formData.append("file", file));
+                chunk.forEach((file) => formData.append("file", file));
 
                 const res = await fetch("/api/google/invoices", {
                     method: "POST",
@@ -38,14 +39,18 @@ export default function UploadForm() {
                 const data = await res.json();
 
                 if (!res.ok) {
-                    setStatus(`❌ Error en la subida de un lote: ${data.message}`);
+                    setStatus(
+                        `❌ Error en la subida de un lote: ${data.message}`
+                    );
                     return;
                 }
 
                 allIds.push(...data.ids);
             }
 
-            setStatus(`✅ Archivos subidos correctamente: ${allIds.join(", ")}`);
+            setStatus(
+                `✅ Archivos subidos correctamente: ${allIds.join(", ")}`
+            );
         } catch (error) {
             console.error("Error al subir archivos:", error);
             setStatus("❌ Error inesperado al subir los archivos.", error);
@@ -59,7 +64,9 @@ export default function UploadForm() {
         if (!confirmDelete) return;
 
         try {
-            const res = await fetch("/api/google/invoices", { method: "DELETE" });
+            const res = await fetch("/api/google/invoices", {
+                method: "DELETE",
+            });
             const contentType = res.headers.get("content-type");
 
             if (contentType && contentType.includes("application/json")) {
@@ -80,8 +87,8 @@ export default function UploadForm() {
     };
 
     return (
-        <section className="space-y-4 w-1/2 h-10 bg-red-50">
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="w-full h-full flex flex-col ">
+            <div className="p-7 flex justify-center items-center flex-1 bg-green-300">
                 <input
                     type="file"
                     name="file"
@@ -90,16 +97,34 @@ export default function UploadForm() {
                     onChange={(e) => setSelectedFiles(e.target.files)}
                 />
                 <button type="submit">Subir XMLs</button>
-            </form>
+            </div>
 
-            <button
-                onClick={handleDelete}
-                style={{ marginTop: "1rem", color: "red" }}
-            >
-                🗑️ Eliminar archivos de la carpeta
-            </button>
+            <div className="p-7 border-t border-t-[#3A3A3D] mt-auto bg-red-400">
+                <button
+                    onClick={handleDelete}
+                    style={{ marginTop: "1rem", color: "red" }}
+                >
+                    🗑️ Eliminar archivos de la carpeta
+                </button>
+                <ComButton />
 
-            {status && <p dangerouslySetInnerHTML={{ __html: status }} />}
-        </section>
+                <button
+                    onClick={async () => {
+                        const res = await fetch("/api/process");
+                        const data = await res.json();
+
+                        if (res.ok) {
+                            alert("✅ " + data.message);
+                            window.open(data.downloadUrl, "_blank");
+                        } else {
+                            alert("❌ " + data.message);
+                        }
+                    }}
+                >
+                    Generar y Descargar Excel
+                </button>
+                {status && <p dangerouslySetInnerHTML={{ __html: status }} />}
+            </div>
+        </form>
     );
 }

@@ -2,8 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.bg-backgroud {
+    background-color: #000;
+}   
+
+.bg-foreground {
+    background-color: #ECEDEE;
+}
+
+.bg-content1 {
+    background-color: #18181b;
+}
+
+.with-card {
+    width: 70%;
+
+    @media screen and (min-width: 900px) {
+        width: 50%;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: 40%;
+    }
+
+    @media screen and (min-width: 1450px) {
+        width: 30%;
+    }
 }

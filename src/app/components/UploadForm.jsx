@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import ComButton from "./ComButton";
+import Button from "./Button";
 
 export default function UploadForm() {
     const [selectedFiles, setSelectedFiles] = useState(null);
@@ -106,7 +106,7 @@ export default function UploadForm() {
                 >
                     🗑️ Eliminar archivos de la carpeta
                 </button>
-                <ComButton />
+                <Button />
 
                 <button
                     onClick={async () => {

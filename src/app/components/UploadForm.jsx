@@ -96,33 +96,38 @@ export default function UploadForm() {
                     multiple
                     onChange={(e) => setSelectedFiles(e.target.files)}
                 />
-                <button type="submit">Subir XMLs</button>
+                
             </div>
 
             <div className="p-7 border-t border-t-[#3A3A3D] mt-auto bg-red-400">
-                <button
+                
+                <Button
+                    type="submit"
+                >
+                    Subir XMLs
+                </Button>
+
+                <Button
                     onClick={handleDelete}
                     style={{ marginTop: "1rem", color: "red" }}
-                >
-                    🗑️ Eliminar archivos de la carpeta
-                </button>
-                <Button />
+                >Limpiar
+                </Button>
 
-                <button
-                    onClick={async () => {
-                        const res = await fetch("/api/process");
-                        const data = await res.json();
+                <Button
+                onClick={async () => {
+                    const res = await fetch("/api/process");
+                    const data = await res.json();
 
-                        if (res.ok) {
-                            alert("✅ " + data.message);
-                            window.open(data.downloadUrl, "_blank");
-                        } else {
-                            alert("❌ " + data.message);
-                        }
-                    }}
+                    if (res.ok) {
+                        alert("✅ " + data.message);
+                        window.open(data.downloadUrl, "_blank");
+                    } else {
+                        alert("❌ " + data.message);
+                    }
+                }}
                 >
-                    Generar y Descargar Excel
-                </button>
+                    Descargar
+                </Button>
 
                 {status && <p dangerouslySetInnerHTML={{ __html: status }} />}
             </div>

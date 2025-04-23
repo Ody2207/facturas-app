@@ -139,10 +139,10 @@ export default function UploadForm() {
             onDrop={handleDrop}
         >
             <div
-                className={`p-7 flex justify-center items-center flex-1 flex-col border-2 border-dashed transition-all rounded-xl cursor-pointer ${
+                className={`p-7 flex justify-center items-center flex-1 flex-col  transition-all rounded-xl cursor-pointer ${
                     dragActive
-                        ? "border-primary bg-primary/10"
-                        : "border-gray-500"
+                        ? "bg-default-100"
+                        : "bg-content1"
                 }`}
                 onClick={handleBrowseClick}
             >

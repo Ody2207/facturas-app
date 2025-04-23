@@ -14,6 +14,10 @@
     background-color: #18181b;
 }
 
+.bg-default-100 {
+    background-color: #27272a;
+}
+
 .bg-button-gray {
     background-color: #3F3F46;
 }

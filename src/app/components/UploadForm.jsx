@@ -1,13 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Button from "./Button";
 
 export default function UploadForm() {
     const [selectedFiles, setSelectedFiles] = useState(null);
     const [status, setStatus] = useState("");
+    const [dragActive, setDragActive] = useState(false);
+    const inputRef = useRef(null);
 
-    // 🔧 Función utilitaria para dividir archivos en grupos de 5
+    const handleDrag = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.type === "dragenter" || e.type === "dragover") {
+            setDragActive(true);
+        } else if (e.type === "dragleave") {
+            setDragActive(false);
+        }
+    }
+    
+    const handleDrop = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setDragActive(false);
+        if (e.dataTransfer.files && e.dataTransfer.files.length) {
+            setSelectedFiles(e.dataTransfer.files);
+        }
+    }
+
+    const handleFileSelect = (e) => {
+        setSelectedFiles(e.target.files);
+    }
+
+    const handleBrowseClick = () => {
+        inputRef.current.click();
+    }
+
     const chunkArray = (array, size) => {
         const result = [];
         for (let i = 0; i < array.length; i += size) {
@@ -87,17 +115,36 @@ export default function UploadForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full h-full flex flex-col bg-content1 rounded-b-2xl">
-            <div className="p-7 flex justify-center items-center flex-1 bg-green-300">
+        <form 
+            onSubmit={handleSubmit} 
+            className="w-full h-full flex flex-col bg-content1 rounded-b-2xl"
+            onDragEnter={handleDrag}
+            onDragOver={handleDrag}
+            onDragLeave={handleDrag}
+            onDrop={handleDrop}
+            >
+            <div
+                className={`p-7 flex justify-center items-center flex-1 flex-col border-2 border-dashed transition-all rounded-xl cursor-pointer ${
+                    dragActive ? "border-primary bg-primary/10" : "border-gray-500"
+                }`}
+                onClick={handleBrowseClick}
+            >
                 <input
+                    ref={inputRef}
                     type="file"
                     name="file"
                     accept=".xml"
                     multiple
-                    onChange={(e) => setSelectedFiles(e.target.files)}
-                    width="1/4"
+                    onChange={handleFileSelect}
+                    className="hidden"
                 />
-                
+                <svg className="w-10 h-10 text-gray-400 mb-2" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 16v-8m0 0l-3 3m3-3l3 3m-3-3v8m6 4H6a2 2 0 01-2-2V6a2 2 0 012-2h6.586a2 2 0 011.414.586l4.414 4.414A2 2 0 0120 10.414V20a2 2 0 01-2 2z" />
+                </svg>
+                <p className="text-center text-sm text-gray-300">Seleccione un archivo o arrástrelo y suéltelo aquí.<br /><span className="text-xs text-gray-500">Formato .XML</span></p>
+                <button type="button" className="mt-4 px-3 py-1 border rounded text-sm text-white border-white" onClick={handleBrowseClick}>
+                    Explorar archivos
+                </button>
             </div>
 
             <div className="p-7 border-t border-t-[#3A3A3D] mt-auto flex justify-between gap-3">

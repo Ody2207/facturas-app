@@ -23,14 +23,29 @@ export default function UploadForm() {
         e.preventDefault();
         e.stopPropagation();
         setDragActive(false);
-        if (e.dataTransfer.files && e.dataTransfer.files.length) {
-            setSelectedFiles(e.dataTransfer.files);
+    
+        const files = Array.from(e.dataTransfer.files);
+        const xmlFiles = files.filter((file) => file.type === "text/xml" || file.name.endsWith(".xml"));
+    
+        if (xmlFiles.length === 0) {
+            alert("❌ Solo se permiten archivos .xml");
+            return;
         }
-    }
+    
+        setSelectedFiles(xmlFiles);
+    };
 
     const handleFileSelect = (e) => {
-        setSelectedFiles(e.target.files);
-    }
+        const files = Array.from(e.target.files);
+        const xmlFiles = files.filter((file) => file.type === "text/xml" || file.name.endsWith(".xml"));
+    
+        if (xmlFiles.length === 0) {
+            alert("❌ Solo se permiten archivos .xml");
+            return;
+        }
+    
+        setSelectedFiles(xmlFiles);
+    };
 
     const handleBrowseClick = () => {
         inputRef.current.click();
@@ -115,17 +130,19 @@ export default function UploadForm() {
     };
 
     return (
-        <form 
-            onSubmit={handleSubmit} 
+        <form
+            onSubmit={handleSubmit}
             className="w-full h-full flex flex-col bg-content1 rounded-b-2xl"
             onDragEnter={handleDrag}
             onDragOver={handleDrag}
             onDragLeave={handleDrag}
             onDrop={handleDrop}
-            >
+        >
             <div
                 className={`p-7 flex justify-center items-center flex-1 flex-col border-2 border-dashed transition-all rounded-xl cursor-pointer ${
-                    dragActive ? "border-primary bg-primary/10" : "border-gray-500"
+                    dragActive
+                        ? "border-primary bg-primary/10"
+                        : "border-gray-500"
                 }`}
                 onClick={handleBrowseClick}
             >
@@ -138,21 +155,42 @@ export default function UploadForm() {
                     onChange={handleFileSelect}
                     className="hidden"
                 />
-                <svg className="w-10 h-10 text-gray-400 mb-2" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 16v-8m0 0l-3 3m3-3l3 3m-3-3v8m6 4H6a2 2 0 01-2-2V6a2 2 0 012-2h6.586a2 2 0 011.414.586l4.414 4.414A2 2 0 0120 10.414V20a2 2 0 01-2 2z" />
+                <svg
+                    className="w-10 h-10 text-gray-400 mb-2"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 16v-8m0 0l-3 3m3-3l3 3m-3-3v8m6 4H6a2 2 0 01-2-2V6a2 2 0 012-2h6.586a2 2 0 011.414.586l4.414 4.414A2 2 0 0120 10.414V20a2 2 0 01-2 2z"
+                    />
                 </svg>
-                <p className="text-center text-sm text-gray-300">Seleccione un archivo o arrástrelo y suéltelo aquí.<br /><span className="text-xs text-gray-500">Formato .XML</span></p>
-                <button type="button" className="mt-4 px-3 py-1 border rounded text-sm text-white border-white" onClick={handleBrowseClick}>
+                <p className="text-center text-sm text-gray-300">
+                    Seleccione un archivo o arrástrelo y suéltelo aquí.
+                    <br />
+                    <span className="text-xs text-gray-500">Formato .XML</span>
+                </p>
+                {selectedFiles && selectedFiles.length > 0 && (
+                    <p className="text-sm text-gray-400 mt-2">
+                        ✅ {selectedFiles.length} archivo
+                        {selectedFiles.length > 1 ? "s" : ""} seleccionado
+                        {selectedFiles.length > 1 ? "s" : ""}
+                    </p>
+                )}
+                <button
+                    type="button"
+                    className="mt-4 px-3 py-1 border rounded text-sm text-white border-white"
+                    onClick={handleBrowseClick}
+                >
                     Explorar archivos
                 </button>
             </div>
 
             <div className="p-7 border-t border-t-[#3A3A3D] mt-auto flex justify-between gap-3">
-                
-                <Button
-                    type="submit"
-                    width="w-1/4"
-                >
+                <Button type="submit" width="w-1/4">
                     Subir XMLs
                 </Button>
 
@@ -160,23 +198,24 @@ export default function UploadForm() {
                     width="w-1/4"
                     onClick={handleDelete}
                     style={{ marginTop: "1rem", color: "red" }}
-                >Limpiar
+                >
+                    Limpiar
                 </Button>
 
                 <Button
-                onClick={async () => {
-                    const res = await fetch("/api/process");
-                    const data = await res.json();
+                    onClick={async () => {
+                        const res = await fetch("/api/process");
+                        const data = await res.json();
 
-                    if (res.ok) {
-                        alert("✅ " + data.message);
-                        window.open(data.downloadUrl, "_blank");
-                    } else {
-                        alert("❌ " + data.message);
-                    }
-                }}
-                color="green"
-                width="w-1/2"
+                        if (res.ok) {
+                            alert("✅ " + data.message);
+                            window.open(data.downloadUrl, "_blank");
+                        } else {
+                            alert("❌ " + data.message);
+                        }
+                    }}
+                    color="green"
+                    width="w-1/2"
                 >
                     Descargar
                 </Button>

@@ -1,4 +1,4 @@
-export default function Button({ children, onClick, type = "button", color }) {
+export default function Button({ children, onClick, type = "button", color, width}) {
     const colorButton = {
         green: {
             background: "bg-green-500",
@@ -42,7 +42,7 @@ export default function Button({ children, onClick, type = "button", color }) {
         <button
             onClick={handleClick}
             type={type}
-            className={`relative overflow-hidden w-full h-10 text-sm rounded-xl font-medium flex items-center justify-center gap-2 px-4 tap-highlight-transparent transition-all duration-150 ease-in-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary active:scale-95 motion-reduce:transition-none ${selectedColor.background} ${selectedColor.text}`}
+            className={`relative overflow-hidden ${width} h-10 text-sm rounded-xl font-medium flex items-center justify-center gap-2 px-4 tap-highlight-transparent transition-all duration-150 ease-in-out outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary active:scale-95 motion-reduce:transition-none ${selectedColor.background} ${selectedColor.text}`}
         >
             {children}
         </button>

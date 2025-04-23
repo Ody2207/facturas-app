@@ -95,6 +95,7 @@ export default function UploadForm() {
                     accept=".xml"
                     multiple
                     onChange={(e) => setSelectedFiles(e.target.files)}
+                    width="1/4"
                 />
                 
             </div>
@@ -103,11 +104,13 @@ export default function UploadForm() {
                 
                 <Button
                     type="submit"
+                    width="w-1/4"
                 >
                     Subir XMLs
                 </Button>
 
                 <Button
+                    width="w-1/4"
                     onClick={handleDelete}
                     style={{ marginTop: "1rem", color: "red" }}
                 >Limpiar
@@ -126,14 +129,9 @@ export default function UploadForm() {
                     }
                 }}
                 color="green"
+                width="w-1/2"
                 >
                     Descargar
-                </Button>
-
-                <Button 
-                    color='green'
-                >
-                    Pureba
                 </Button>
 
                 {status && <p dangerouslySetInnerHTML={{ __html: status }} />}

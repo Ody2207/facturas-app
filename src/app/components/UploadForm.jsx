@@ -87,7 +87,7 @@ export default function UploadForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full h-full flex flex-col ">
+        <form onSubmit={handleSubmit} className="w-full h-full flex flex-col bg-content1 rounded-b-2xl">
             <div className="p-7 flex justify-center items-center flex-1 bg-green-300">
                 <input
                     type="file"
@@ -99,7 +99,7 @@ export default function UploadForm() {
                 
             </div>
 
-            <div className="p-7 border-t border-t-[#3A3A3D] mt-auto bg-red-400">
+            <div className="p-7 border-t border-t-[#3A3A3D] mt-auto flex justify-between gap-3">
                 
                 <Button
                     type="submit"

@@ -125,8 +125,15 @@ export default function UploadForm() {
                         alert("❌ " + data.message);
                     }
                 }}
+                color="green"
                 >
                     Descargar
+                </Button>
+
+                <Button 
+                    color='green'
+                >
+                    Pureba
                 </Button>
 
                 {status && <p dangerouslySetInnerHTML={{ __html: status }} />}

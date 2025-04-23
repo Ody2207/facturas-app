@@ -155,20 +155,10 @@ export default function UploadForm() {
                     onChange={handleFileSelect}
                     className="hidden"
                 />
-                <svg
-                    className="w-10 h-10 text-gray-400 mb-2"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 16v-8m0 0l-3 3m3-3l3 3m-3-3v8m6 4H6a2 2 0 01-2-2V6a2 2 0 012-2h6.586a2 2 0 011.414.586l4.414 4.414A2 2 0 0120 10.414V20a2 2 0 01-2 2z"
-                    />
-                </svg>
-                <p className="text-center text-sm text-gray-300">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width={48} height={48} viewBox="0 0 24 24"><g fill="none" stroke="#A1A1AA" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}><path strokeDasharray={20} strokeDashoffset={20} d="M8 19h-1c-2.5 0 -4 -2 -4 -4c0 -2 1.5 -4 4 -4c1 0 1.5 0.5 1.5 0.5M16 19h1c2.5 0 4 -2 4 -4c0 -2 -1.5 -4 -4 -4c-1 0 -1.5 0.5 -1.5 0.5"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="20;0"></animate></path><path strokeDasharray={20} strokeDashoffset={20} d="M7 11v-1c0 -2.5 2 -5 5 -5M17 11v-1c0 -2.5 -2 -5 -5 -5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.4s" dur="0.3s" values="20;0"></animate></path><path strokeDasharray={8} strokeDashoffset={8} d="M12 20v-6"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" values="8;0"></animate></path><path strokeDasharray={4} strokeDashoffset={4} d="M12 13l2 2M12 13l-2 2"><animate fill="freeze" attributeName="stroke-dashoffset" begin="1s" dur="0.2s" values="4;0"></animate></path></g></svg>
+
+                <p className="text-center text-sm text-gray-300 my-7">
                     Seleccione un archivo o arrástrelo y suéltelo aquí.
                     <br />
                     <span className="text-xs text-gray-500">Formato .XML</span>
@@ -180,13 +170,13 @@ export default function UploadForm() {
                         {selectedFiles.length > 1 ? "s" : ""}
                     </p>
                 )}
-                <button
+                <Button
                     type="button"
-                    className="mt-4 px-3 py-1 border rounded text-sm text-white border-white"
                     onClick={handleBrowseClick}
+                    variant="ghost"
                 >
                     Explorar archivos
-                </button>
+                </Button>
             </div>
 
             <div className="p-7 border-t border-t-[#3A3A3D] mt-auto flex justify-between gap-3">

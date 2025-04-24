@@ -8,6 +8,7 @@ export default function UploadForm() {
     const [status, setStatus] = useState("");
     const [dragActive, setDragActive] = useState(false);
     const inputRef = useRef(null);
+    const [loaing, setLoading] = useState(false)
 
     const handleDrag = (e) => {
         e.preventDefault();
@@ -180,7 +181,7 @@ export default function UploadForm() {
 
             <div className="p-7 border-t border-t-[#3A3A3D] mt-auto flex justify-between gap-3">
                 <Button type="submit" width="w-1/4">
-                    Subir XMLs
+                    Subir
                 </Button>
 
                 <Button
@@ -193,6 +194,7 @@ export default function UploadForm() {
 
                 <Button
                     onClick={async () => {
+                        setLoading(true)
                         const res = await fetch("/api/process");
                         const data = await res.json();
 
@@ -202,10 +204,13 @@ export default function UploadForm() {
                         } else {
                             alert("❌ " + data.message);
                         }
+                        setLoading(false)
                     }}
+                    variant={loaing ? "loading" : "solid"}
                     color="green"
                     width="w-1/2"
                 >
+                    
                     Descargar
                 </Button>
 

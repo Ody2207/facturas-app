@@ -24,6 +24,8 @@ function HomePage() {
                 <div className="h-full rounded-b-2x">
                     <UploadForm />
                 </div>
+
+                
             </section>
         </section>
     );

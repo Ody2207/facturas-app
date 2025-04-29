@@ -218,7 +218,7 @@ export default function UploadForm() {
                     </p>
 
                     {xmlFiles.length > 0 && (
-                        <p className="text-sm text-gray-400 mt-2">
+                        <p className="text-sm text-gray-400 mb-4">
                             ✅ {xmlFiles.length} archivo
                             {xmlFiles.length > 1 ? "s" : ""} listo
                             {xmlFiles.length > 1 ? "s" : ""}

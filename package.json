@@ -18,7 +18,8 @@
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "xlsx": "^0.18.5",
     "xlsx-populate": "^1.21.0",
-    "xml2js": "^0.6.2"
+    "xml2js": "^0.6.2",
+    "xmldom": "^0.6.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",

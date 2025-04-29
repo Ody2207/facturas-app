@@ -73,15 +73,50 @@ export default function UploadForm() {
         inputRef.current.click();
     };
 
-    // Simular "descargar" mostrando en consola
-    const handleDownloadClick = () => {
-        console.log("Archivos XML leídos:", xmlFiles);
+
+    const handleDownloadClick = async () => {
         if (xmlFiles.length === 0) {
-            alert("No hay archivos XML cargados.");
-        } else {
-            alert("✅ Archivos cargados, revisa la consola.");
+            alert("❌ No hay archivos XML cargados.");
+            return;
+        }
+    
+        setLoading(true);
+        setStatus("Generando Excel...");
+    
+        try {
+            const xmlArray = xmlFiles.map(file => file.content);
+    
+            const response = await fetch("/api/generar-excel", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ xmlArray }),
+            });
+    
+            if (!response.ok) {
+                throw new Error("Error generando el archivo Excel.");
+            }
+    
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+    
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'facturas.xlsx';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+    
+            window.URL.revokeObjectURL(url);
+            setStatus("✅ Excel descargado exitosamente.");
+        } catch (error) {
+            console.error(error);
+            alert("❌ Ocurrió un error al generar el Excel.");
+            setStatus("❌ Error al descargar.");
+        } finally {
+            setLoading(false);
         }
     };
+    
 
     return (
         <>
@@ -107,7 +142,6 @@ export default function UploadForm() {
                         className="hidden"
                     />
 
-                    {/* Ícono SVG */}
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width={48}

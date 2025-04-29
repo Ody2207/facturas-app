@@ -49,39 +49,55 @@ function procesarXMLs(xmlStrings) {
 // Generar buffer del Excel
 async function crearExcelBuffer(facturas) {
   const workbook = await XlsxPopulate.fromBlankAsync();
-  const sheet = workbook.sheet(0);
 
-  const headers = [
-    'UUID', 'FECHA', 'TOTAL', 'SUBTOTAL', 'MONEDA',
-    'TIPO DE COMPROBANTE', 'METODO DE PAGO', 'FORMA DE PAGO',
-    'EMISOR: RFC', 'EMISOR: NOMBRE', 'EMISOR: REGIMEN FISCAL',
-    'RECEPTOR: RFC', 'RECEPTOR: NOMBRE', 'RECEPTOR: USO CFDI'
-  ];
+  // Agrupar facturas por forma de pago
+  const facturasPorFormaPago = facturas.reduce((acc, factura) => {
+    const formaPago = factura.FormaPago || "No disponible";
+    if (!acc[formaPago]) {
+      acc[formaPago] = [];
+    }
+    acc[formaPago].push(factura);
+    return acc;
+  }, {});
 
-  headers.forEach((header, col) => {
-    sheet.cell(1, col + 1).value(header);
-  });
+  // Crear una hoja por cada forma de pago
+  Object.entries(facturasPorFormaPago).forEach(([formaPago, facturas], index) => {
+    const sheet = index === 0 ? workbook.sheet(0).name(formaPago) : workbook.addSheet(formaPago);
 
-  facturas.forEach((factura, row) => {
-    const values = [
-      factura.UUID,
-      factura.Fecha,
-      factura.Total,
-      factura.SubTotal,
-      factura.Moneda,
-      factura.TipoDeComprobante,
-      factura.MetodoPago,
-      factura.FormaPago,
-      factura.Emisor.Rfc,
-      factura.Emisor.Nombre,
-      factura.Emisor.RegimenFiscal,
-      factura.Receptor.Rfc,
-      factura.Receptor.Nombre,
-      factura.Receptor.UsoCFDI
+    const headers = [
+      'UUID', 'FECHA', 'TOTAL', 'SUBTOTAL', 'MONEDA',
+      'TIPO DE COMPROBANTE', 'METODO DE PAGO', 'FORMA DE PAGO',
+      'EMISOR: RFC', 'EMISOR: NOMBRE', 'EMISOR: REGIMEN FISCAL',
+      'RECEPTOR: RFC', 'RECEPTOR: NOMBRE', 'RECEPTOR: USO CFDI'
     ];
 
-    values.forEach((value, col) => {
-      sheet.cell(row + 2, col + 1).value(value);
+    // Escribir encabezados
+    headers.forEach((header, col) => {
+      sheet.cell(1, col + 1).value(header);
+    });
+
+    // Escribir datos de las facturas
+    facturas.forEach((factura, row) => {
+      const values = [
+        factura.UUID,
+        factura.Fecha,
+        factura.Total,
+        factura.SubTotal,
+        factura.Moneda,
+        factura.TipoDeComprobante,
+        factura.MetodoPago,
+        factura.FormaPago,
+        factura.Emisor.Rfc,
+        factura.Emisor.Nombre,
+        factura.Emisor.RegimenFiscal,
+        factura.Receptor.Rfc,
+        factura.Receptor.Nombre,
+        factura.Receptor.UsoCFDI
+      ];
+
+      values.forEach((value, col) => {
+        sheet.cell(row + 2, col + 1).value(value);
+      });
     });
   });
 
